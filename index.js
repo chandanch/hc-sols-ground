@@ -1,27 +1,25 @@
-function marsExploration(s) {
+function plusMinus(arr) {
   // Write your code here
-  const letterAccumulator = [];
-  let changedCharacterCount = 0;
-  for (let i = 0; i <= s.length; i++) {
-    if (letterAccumulator.length === 3) {
-      if (letterAccumulator[0] !== 'S') {
-        changedCharacterCount += 1;
-      }
-      if (letterAccumulator[1] !== 'O') {
-        changedCharacterCount += 1;
-      }
-      if (letterAccumulator[2] !== 'S') {
-        changedCharacterCount += 1;
-      }
-      letterAccumulator.length = 0;
-      letterAccumulator.push(s[i]);
+  const ratioConter = {
+    postiveCount: 0,
+    negativeCount: 0,
+    zeroCount: 0,
+  };
+  arr.forEach((value) => {
+    if (value > 0) {
+      ratioConter.postiveCount += 1;
+    } else if (value < 0) {
+      ratioConter.negativeCount += 1;
     } else {
-      letterAccumulator.push(s[i]);
+      ratioConter.zeroCount += 1;
     }
-  }
-  return changedCharacterCount;
+  });
+
+  console.log(
+    `${(ratioConter.postiveCount / arr.length).toFixed(6)}\n ${(
+      ratioConter.negativeCount / arr.length
+    ).toFixed(6)}\n ${(ratioConter.zeroCount / arr.length).toFixed(6)}\n`
+  );
 }
 
-const res = marsExploration('DFGDFGUIOD');
-
-console.log(res);
+const res = plusMinus([1, 2, -1, -3, 0, 3]);
