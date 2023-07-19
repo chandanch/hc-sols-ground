@@ -1,21 +1,18 @@
-function migratoryBirds(arr) {
-  // Write your code here
-  const coutTracker = {};
-  arr.forEach((item) => {
-    coutTracker[item] ? (coutTracker[item] += 1) : (coutTracker[item] = 1);
-  });
+function zigzagSequence(arr) {
+  arr = arr.sort((a, b) => a - b);
+  const maxNumber = arr[arr.length - 1];
+  const middleElem = (arr.length + 1) / 2;
+  [arr[middleElem - 1], arr[arr.length - 1]] = [
+    arr[arr.length - 1],
+    arr[middleElem - 1],
+  ];
 
-  const maxOccurence = Math.max(...Object.values(coutTracker));
+  const leftElems = arr.slice(0, middleElem - 1);
+  const rightElems = arr.slice(middleElem, arr.length).sort((a, b) => b - a);
 
-  const maxOccuredId = Math.min(
-    ...Object.keys(coutTracker).filter(
-      (key) => coutTracker[key] === maxOccurence
-    )
-  );
+  console.log(arr, maxNumber, middleElem, leftElems, rightElems);
 
-  return maxOccuredId;
+  console.log(`Res: ${[...leftElems, maxNumber, rightElems]}`);
 }
 
-const res = migratoryBirds([1, 2, 3, 4, 5, 4, 3, 2, 1, 3, 4, 5, 5, 5, 4, 5, 4]);
-
-console.log(res);
+zigzagSequence([1, 2, 3, 4, 5, 6, 7]);
