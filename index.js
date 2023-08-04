@@ -1,18 +1,13 @@
-function zigzagSequence(arr) {
-  arr = arr.sort((a, b) => a - b);
-  const maxNumber = arr[arr.length - 1];
-  const middleElem = (arr.length + 1) / 2;
-  [arr[middleElem - 1], arr[arr.length - 1]] = [
-    arr[arr.length - 1],
-    arr[middleElem - 1],
-  ];
-
-  const leftElems = arr.slice(0, middleElem - 1);
-  const rightElems = arr.slice(middleElem, arr.length).sort((a, b) => b - a);
-
-  console.log(arr, maxNumber, middleElem, leftElems, rightElems);
-
-  console.log(`Res: ${[...leftElems, maxNumber, rightElems]}`);
+function sockMerchant(n, ar) {
+  // Write your code here
+  const uniqueItems = new Set(ar);
+  console.log(uniqueItems.size);
+  let pairCounter = 0;
+  for (let key of uniqueItems.keys()) {
+    const items = ar.filter((value) => value === key);
+    pairCounter += Math.floor(items.length / 2);
+  }
+  return pairCounter;
 }
 
-zigzagSequence([1, 2, 3, 4, 5, 6, 7]);
+const res = sockMerchant(9, [10, 20, 20, 10, 10, 30, 50, 10, 20]);
