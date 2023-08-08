@@ -1,13 +1,29 @@
-function sockMerchant(n, ar) {
+function pageCount(n, p) {
   // Write your code here
-  const uniqueItems = new Set(ar);
-  console.log(uniqueItems.size);
-  let pairCounter = 0;
-  for (let key of uniqueItems.keys()) {
-    const items = ar.filter((value) => value === key);
-    pairCounter += Math.floor(items.length / 2);
+  let pageTracker = 0;
+  let flipCount = 0;
+
+  for (let i = 0; i <= p; i++) {
+    if (i === 0) {
+      pageTracker += 1;
+    } else {
+      pageTracker += 1;
+      if (pageTracker === p) {
+        break;
+      } else {
+        pageTracker += 1;
+        if (pageTracker === p) {
+          break;
+        }
+      }
+    }
+    flipCount += 1;
+
+    console.log(`Page Tracker:${pageTracker}`, `Flip Count: ${flipCount}`);
   }
-  return pairCounter;
+
+  return flipCount;
 }
 
-const res = sockMerchant(9, [10, 20, 20, 10, 10, 30, 50, 10, 20]);
+const res = pageCount(6, 2);
+console.log(res);
